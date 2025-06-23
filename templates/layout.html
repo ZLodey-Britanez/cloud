@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ </head>
+ <body class="loggedin">
+   
+ <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <p style="padding:5px;"></p>
+            <a href="{{ url_for('upload_file') }}" class="btn btn-primary ">Загрузить файл</a>
+            <!--{% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit" value="Upload">
+            </form>-->
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('uploaded_files') }}">
+                  <i class="fas fa-folder "></i> Файлы</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('share_file_list') }}">
+                  <i class="fa fa-users fa"></i> Общий доступ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('profile') }}">
+                  <i class="fas fa-user-circle"></i> Профиль</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('logout') }}">
+                  <i class="fas fa-sign-out-alt"></i> Выход</a>
+              </li>
+          </div>
+        </nav>
+  
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-12">
+   {% block content %}{% endblock %}
+   </div>
+          </div>
+   </main>
+     
+      </div>
+    </div>
+   
+ </body>
+</html>

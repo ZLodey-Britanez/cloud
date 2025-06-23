@@ -1,0 +1,17 @@
+{% extends "uploads_list.html" %}
+{% block content %}
+    <h2>Поделиться файлом: {{ file.original_filename }}</h2>
+    <form method="post">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="permission">Права доступа:</label>
+        <select id="permission" name="permission">
+            <option value="view">Просмотр</option>
+            <option value="edit">Редактирование</option>
+        </select><br><br>
+
+        <button type="submit">Поделиться</button>
+    </form>
+    <a href="{{ url_for('uploaded_files') }}">Назад к списку файлов</a>
+{% endblock %}

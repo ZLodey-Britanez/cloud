@@ -1,0 +1,18 @@
+{% extends "uploads_list.html" %}
+{% block content %}
+    <h2>Комментарии к файлу: {{ file.original_filename }}</h2>
+
+    <form method="post">
+        <label for="comment">Добавить комментарий:</label><br>
+        <textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <h3>Все комментарии:</h3>
+    {% for comment in comments %}
+        <p><strong>{{ comment.username }}</strong> ({{ comment.comment_date }}):<br>
+        {{ comment.comment }}</p>
+    {% endfor %}
+
+    <a href="{{ url_for('uploaded_files') }}">Назад к списку файлов</a>
+{% endblock %}

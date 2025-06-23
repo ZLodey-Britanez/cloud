@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Shared access{% endblock %}
+  
+{% block content %}
+<h1 class="h2">Общий доступ</h1>
+<p>Добро пожаловать на общую страницу!</p>
+<div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <ul>
+        {% for file in files %}
+            <li>
+                {{ file['original_filename'] }} -
+                <a href="{{ url_for('download_share_file', file_id=file['id']) }}">Скачать</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+    <!-- Дополнительный контент для главной страницы -->
+{% endblock %}

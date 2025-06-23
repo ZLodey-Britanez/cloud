@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Uploads_list{% endblock %}
+  
+{% block content %}
+<h1>Все загруженные файлы</h1>
+<div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <ul>
+        {% for file in files %}
+            <li>
+                {{ file['original_filename'] }} -
+                <a href="{{ url_for('download_file', file_id=file['id']) }}">Скачать</a> <a href="{{ url_for('share_file', file_id=file['id']) }}">Поделиться</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
